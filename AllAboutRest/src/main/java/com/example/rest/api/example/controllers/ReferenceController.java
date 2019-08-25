@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/Resources")
-public class ResourceController {
+public class ReferenceController {
 
 	Collection<String> times = Arrays.asList("evening", "morning");
 
