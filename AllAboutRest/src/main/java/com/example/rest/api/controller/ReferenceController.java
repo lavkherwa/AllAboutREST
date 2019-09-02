@@ -1,4 +1,4 @@
-package com.example.rest.api.example.controllers;
+package com.example.rest.api.controller;
 
 import java.util.Arrays;
 import java.util.Collection;
