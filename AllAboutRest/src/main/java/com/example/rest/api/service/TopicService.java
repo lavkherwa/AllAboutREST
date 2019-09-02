@@ -20,12 +20,22 @@ public class TopicService {
 	public List<Topic> getAllTopics() {
 		List<Topic> topics = new ArrayList<>();
 		topicRepository.findAll().forEach(topics::add);
-
 		return topics;
+	}
+
+	public Topic getTopic(Long topicId) {
+		return topicRepository.findById(topicId).get();
 	}
 
 	public Topic saveTopic(Topic topic) {
 		return topicRepository.save(topic);
 	}
 
+	public Topic updateTopic(Topic topic) {
+		return topicRepository.save(topic);
+	}
+
+	public void deleteTopic(Long topicId) {
+		topicRepository.deleteById(topicId);
+	}
 }

@@ -22,4 +22,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<ErrorMessage>(exceptionMessage, HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(NotFoundException.class)
+	public final ResponseEntity<ErrorMessage> handleNotFoundExceptions(Exception ex, WebRequest request) {
+		ErrorMessage exceptionMessage = new ErrorMessage(ex.getLocalizedMessage(), "Requested resource not found");
+		return new ResponseEntity<ErrorMessage>(exceptionMessage, HttpStatus.NOT_FOUND);
+	}
+
 }

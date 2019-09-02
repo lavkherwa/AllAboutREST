@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.rest.api.model.Topic;
 
 @Repository
-public interface TopicRepository extends JpaRepository<Topic, String>{
+public interface TopicRepository extends JpaRepository<Topic, Long>{
 
 }

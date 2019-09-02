@@ -1,16 +1,20 @@
 package com.example.rest.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.rest.api.exception.BadRequestException;
+import com.example.rest.api.exception.NotFoundException;
 import com.example.rest.api.model.Topic;
 import com.example.rest.api.service.TopicService;
 
@@ -29,6 +33,15 @@ public class TopicController {
 		return ResponseEntity//
 				.status(HttpStatus.OK)//
 				.body(topicService.getAllTopics());
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Topic> getTopic(@PathVariable(value = "id") Long topicId) {
+		Topic topic = topicService.getTopic(topicId);
+		if (topic == null) {
+			throw new NotFoundException("No topic found for id: " + topicId);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(topic);
 	}
 
 	@PostMapping
