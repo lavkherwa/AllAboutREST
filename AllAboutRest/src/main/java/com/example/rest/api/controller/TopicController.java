@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.rest.api.exception.BadRequestException;
 import com.example.rest.api.model.Topic;
 import com.example.rest.api.service.TopicService;
 
@@ -32,9 +33,16 @@ public class TopicController {
 
 	@PostMapping
 	public ResponseEntity<Topic> saveTopic(@RequestBody Topic topic) {
+
+		if (topic.getName() == null || //
+				topic.getName().equals("")) {
+			throw new BadRequestException("Name is mandatory field for a topic!");
+		}
+
+		Topic result = topicService.saveTopic(topic);
 		return ResponseEntity//
 				.status(HttpStatus.CREATED)//
-				.body(topicService.saveTopic(topic));
+				.body(topicService.saveTopic(result));
 
 	}
 
