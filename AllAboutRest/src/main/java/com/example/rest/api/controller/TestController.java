@@ -11,7 +11,7 @@ public class TestController {
 
 	@GetMapping("/message")
 	public ResponseEntity<String> getMessage() throws InterruptedException {
-		Thread.sleep(4000);
+		
 		return ResponseEntity.badRequest().body("Error happened");
 	}
 
