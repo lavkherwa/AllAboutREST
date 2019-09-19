@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: all-about-rest
+server:
+  port: 0
+eureka:
+ client:
+   service-url:
+     defaultZone: ${EUREKA_URI:http://admin:pwd@localhost:8090/eureka/}
+ instance:
+     preferIpAddress: true
