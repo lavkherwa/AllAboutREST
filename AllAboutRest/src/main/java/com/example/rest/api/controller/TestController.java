@@ -39,8 +39,9 @@ public class TestController {
 	public ResponseEntity<StreamingResponseBody> getPdfStream() throws IOException {
 
 		StreamingResponseBody stream = out -> {
-			InputStream in = getClass().getResourceAsStream("/static/sample.pdf");
-			out.write(IOUtils.toByteArray(in));
+			try (InputStream in = getClass().getResourceAsStream("/static/sample.pdf")) {
+				out.write(IOUtils.toByteArray(in));
+			}
 		};
 
 		return new ResponseEntity<StreamingResponseBody>(stream, HttpStatus.OK);
